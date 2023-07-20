@@ -1,0 +1,22 @@
+version: '3'
+services:
+  flask-app:
+    image: flask:v4
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    command: ["python", "app.py"]    
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodbdata:/data/db
+
+volumes:
+  mongodbdata:
+
