@@ -1,4 +1,4 @@
-""" from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -10,46 +10,10 @@ collection = db["mycollection"]
 def index():
     return "Hello, this is your Flask app!"
 
-@app.route("/insert", methods=["POST"])
-def insert_data():
-    try:
-        data = request.get_json()
-        if data and "name" in data:
-            collection.insert_one({"name": data["name"]})
-            return jsonify({"status": "success", "name": "Data inserted successfully!"})
-        else:
-            return jsonify({"status": "error", "name": "Invalid data format!"}), 400
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-@app.route("/query")
-def query_data():
-    try:
-        result = collection.find_one()
-        if result:
-            return jsonify({"status": "success", "data": result})
-        else:
-            return jsonify({"status": "success", "message": "No data found!"})
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
- """
-
-
-
-from flask import Flask, request, jsonify
-from pymongo import MongoClient
-
-app = Flask(__name__)
-client = MongoClient("mongodb", 27017)
-db = client["mydatabase"]
-collection = db["mycollection"]
-
-@app.route("/")
-def index():
-    return "Hello, this is your Flask app!"
+# Route to render the HTML form
+@app.route("/insert", methods=["GET"])
+def render_insert_form():
+    return render_template("insert.html")
 
 @app.route("/insert", methods=["POST"])
 def insert_data():

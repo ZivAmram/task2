@@ -1,0 +1,13 @@
+1:
+docker build -t flask:v6 .
+
+2:
+docker-compose up -d
+
+3:
+to insert to db via the cli:
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Ziv", "age": 21, "email": "ziv.amram@gmail.com"}' http://localhost:5000/insert
+
+4:
+to insert from the web navigate to:
+http://localhost:5000/insert

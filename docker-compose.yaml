@@ -1,7 +1,7 @@
 version: '3'
 services:
   flask-app:
-    image: flask:v4
+    image: flask:v6
     ports:
       - "5000:5000"
     depends_on:
