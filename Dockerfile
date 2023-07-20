@@ -15,9 +15,6 @@ RUN pip3 install Jinja2==3.0.3
 # Expose port 5000 for Flask
 EXPOSE 5000
 
-# Define environment variable for Flask
-ENV FLASK_APP app.py
-
 # Run the Flask application
 CMD ["python", "app.py", "--host=0.0.0.0"]
 
